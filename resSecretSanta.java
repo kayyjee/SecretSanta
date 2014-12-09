@@ -5,7 +5,7 @@ import java.util.*;
  *
  * @author Kyle
  */
-class New {
+class resSecretSanta {
 
     /**
      * @param args the command line arguments
