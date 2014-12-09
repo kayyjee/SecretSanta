@@ -1,5 +1,8 @@
 import java.lang.Math;
 import java.util.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.io.*;
 
 /**
  *
@@ -14,10 +17,19 @@ class secretSanta {
     private static String[][] names;
     private static int totalNames;
     private static Scanner scan; 
+    static PrintWriter writer;
     private static Scanner scan2; 
 
-    public static void main(String args[]) {
-        
+    public static void main(String args[]) throws Exception{
+
+        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yy-HH.mm.ss");
+        Date date = new Date();
+        String dateLog = dateFormat.format(date);
+        //Create log writer.
+        writer = new PrintWriter(dateLog+"_SecretSanta_Results.txt", "UTF-8");
+
+
+
         System.out.println("How many people are entering?");
         scan = new Scanner(System.in);
         scan2 = new Scanner(System.in);
@@ -75,12 +87,16 @@ class secretSanta {
 
         for (int i = 0; i < totalNames; i++) {
             System.out.println("WELCOME! "+ names[0][i]+"\n\n\n\n");
+            writer.print(names[0][i]+"\n");
+
             System.out.println("Hit Enter to get your Name");
             String temp = scan2.nextLine();
             System.out.println("\n\nYour buying a gift for:  "+ names[1][i]+"!!\n");
+            writer.println(" is buying gift for  "+ names[1][i]+"\n\n");
 
             if (i==(totalNames - 1)){
                 System.out.println("Happy Holidays!");
+                writer.close();
                 System.exit(0);
             }
             System.out.println("Done? Hit Enter and pass to: "+ names[0][i+1]);
