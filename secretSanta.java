@@ -14,11 +14,13 @@ class secretSanta {
     private static String[][] names;
     private static int totalNames;
     private static Scanner scan; 
+    private static Scanner scan2; 
 
     public static void main(String args[]) {
         
         System.out.println("How many people are entering?");
         scan = new Scanner(System.in);
+        scan2 = new Scanner(System.in);
         totalNames = scan.nextInt();
 
         names = new String[2][totalNames];
@@ -30,11 +32,11 @@ class secretSanta {
 
     public static void fill(){
         for (int i =0; i<totalNames; i++){
-            
+
             System.out.println("Please enter the name of someone involved:");
-            String name = scan.nextLine();
-            names[0][i] = name;
-            System.out.println("Thank you");
+            
+            names[0][i] = scan.next();
+            System.out.println("Thank You");
         }
     }
 
@@ -44,13 +46,13 @@ class secretSanta {
     public static void partner(){
         ArrayList Got = new ArrayList();
 
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < totalNames; i++) {
             Got.add(names[0][i]);
         }
         
-        int max = 7;
+        int max = totalNames;
 
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < totalNames; i++) {
             Random rand = new Random();
             int randomNum = rand.nextInt(max);
 
@@ -71,18 +73,18 @@ class secretSanta {
 
 
 
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < totalNames; i++) {
             System.out.println("WELCOME! "+ names[0][i]+"\n\n\n\n");
             System.out.println("Hit Enter to get your Name");
-            String temp = scan.nextLine();
+            String temp = scan2.nextLine();
             System.out.println("\n\nYour buying a gift for:  "+ names[1][i]+"!!\n");
 
-            if (i==6){
+            if (i==(totalNames - 1)){
                 System.out.println("Happy Holidays!");
                 System.exit(0);
             }
             System.out.println("Done? Hit Enter and pass to: "+ names[0][i+1]);
-            temp = scan.nextLine();
+            temp = scan2.nextLine();
         }
     }
 }
